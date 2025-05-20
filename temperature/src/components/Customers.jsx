@@ -2,6 +2,7 @@ import { FaUser } from 'react-icons/fa';
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa";
 import { IoReloadCircleSharp } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 const customers = [
   {
@@ -48,7 +49,7 @@ const Customers = () => {
       <h2 className="text-2xl font-bold mb-4">Customers</h2>
       <div>
         <ul className='flex gap-3'>
-            <FaPlus size={20} color="grey" className='cursor-pointer rounded-lg'  />
+           <Link to={"./addcustomers"}> <FaPlus size={20} color="grey" className='cursor-pointer rounded-lg'  /></Link>
             <IoReloadCircleSharp size={20} color="grey" className='cursor-pointer rounded-lg' />
             <FaUser size={20} color="grey" className='cursor-pointer rounded-lg' />
         </ul>
