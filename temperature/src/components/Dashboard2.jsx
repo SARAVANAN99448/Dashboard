@@ -7,7 +7,7 @@ import { WiHumidity } from "react-icons/wi";
 import { Wind, Thermometer } from "lucide-react";
 import { FaVirus, FaBroom } from "react-icons/fa";
 
-const Dashboard = () => {
+const Dashboard2 = () => {
   const { deviceName } = useParams();
 
   return (
@@ -27,7 +27,7 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="Air Quality Index"
-            value="382.2"
+            value="176.5"
             unit="AQI"
             color="text-purple-600"
             icon={<Wind size={24} />}
@@ -36,7 +36,7 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="VOCs"
-            value="738"
+            value="421"
             unit="ppb"
             color="text-yellow-500"
             icon={<FaVirus size={24} />}
@@ -45,7 +45,7 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="Humidity"
-            value="N/A"
+            value="54.3"
             unit="%"
             color="text-black"
             icon={<WiHumidity size={30} />}
@@ -54,8 +54,8 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="CO2"
-            value="N/A"
-            unit=""
+            value="831"
+            unit="ppm"
             color="text-black"
             icon={<MdCo2 size={30} />}
           />
@@ -63,8 +63,8 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="PM1"
-            value="N/A"
-            unit=""
+            value="15"
+            unit="µg/m³"
             color="text-black"
             icon={<MdGrain size={24} />}
           />
@@ -72,8 +72,8 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="PM2.5"
-            value="N/A"
-            unit=""
+            value="42"
+            unit="µg/m³"
             color="text-black"
             icon={<FaBroom size={24} />}
           />
@@ -81,8 +81,8 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="PM10"
-            value="N/A"
-            unit=""
+            value="67"
+            unit="µg/m³"
             color="text-black"
             icon={<MdGrain size={24} />}
           />
@@ -90,7 +90,7 @@ const Dashboard = () => {
         <div className="shadow-[0_2px_6px_rgba(0,0,0,0.15)]">
           <DashboardCard
             title="Temperature"
-            value="42"
+            value="36.8"
             unit="°C"
             color="text-red-500"
             icon={<Thermometer size={24} />}
@@ -109,4 +109,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard2;

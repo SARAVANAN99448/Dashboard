@@ -18,21 +18,21 @@ const Header = () => {
     try {
       await signOut(auth);
       alert("Logged out successfully");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       alert("Error logging out: " + error.message);
     }
   };
 
   const handleLogin = () => {
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <header className="flex justify-between items-center bg-[#305680] text-white p-4 border-b">
-      <h1 className="text-2xl font-semibold">My Dashboard</h1>
+      <h1 className="text-2xl font-semibold"></h1>
       <div className="flex items-center gap-4">
-        <span>{user ? `${user.email} (Tenant administrator)` : "Guest"}</span>
+        {/* <span>{user ? `${user.email} (Tenant administrator)` : "Guest"}</span> */}
         {user ? (
           <button
             onClick={handleLogout}
@@ -45,7 +45,7 @@ const Header = () => {
             onClick={handleLogin}
             className="border px-3 py-1 rounded cursor-pointer hover:bg-white hover:text-[#305680] transition"
           >
-            Login
+            sign in
           </button>
         )}
       </div>
