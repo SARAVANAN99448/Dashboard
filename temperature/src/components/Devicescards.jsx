@@ -2,7 +2,7 @@ import React from 'react';
 
 const DevicesCard = () => {
   return (
-    <div className="bg-white rounded-xl shadow p-4 flex flex-col gap-4 w-1/2 justify-center px-10">
+    <div className="bg-white rounded-xl shadow-2xl p-4 flex flex-col gap-4 w-1/2 justify-center px-10">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h2 className="text-gray-700 font-semibold">Devices</h2>

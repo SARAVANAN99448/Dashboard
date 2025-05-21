@@ -1,11 +1,22 @@
 import { useEffect, useState } from "react";
-import { auth } from "./firebase"; // your firebase config file
+import { auth } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Determine the page title based on pathname
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path.includes("/home")) return "Home";
+    if (path.includes("/customers")) return "Customers";
+    if (path.includes("/devices")) return "Devices";
+    if (path.includes("/dashboard") || path.includes("/admin")) return "Dashboard";
+    return "Dashboard"; // default fallback
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -17,7 +28,6 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      alert("Logged out successfully");
       navigate("/");
     } catch (error) {
       alert("Error logging out: " + error.message);
@@ -30,9 +40,26 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center bg-[#305680] text-white p-4 border-b">
-      <h1 className="text-2xl font-semibold"></h1>
+      <h1 className="text-2xl font-semibold">{getPageTitle()}</h1>
+
       <div className="flex items-center gap-4">
-        {/* <span>{user ? `${user.email} (Tenant administrator)` : "Guest"}</span> */}
+        {user && (
+          <div className="flex items-center gap-3">
+            {user.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="Profile"
+                className="w-8 h-8 rounded-full object-cover border"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold">
+                {user.displayName ? user.displayName[0] : "U"}
+              </div>
+            )}
+            <span>{user.displayName || user.email}</span>
+          </div>
+        )}
+
         {user ? (
           <button
             onClick={handleLogout}
@@ -45,7 +72,7 @@ const Header = () => {
             onClick={handleLogin}
             className="border px-3 py-1 rounded cursor-pointer hover:bg-white hover:text-[#305680] transition"
           >
-            sign in
+            Sign In
           </button>
         )}
       </div>
