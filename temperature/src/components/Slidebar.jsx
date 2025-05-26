@@ -32,7 +32,7 @@ const Sidebar = () => {
   const isAdmin = user.email === adminEmail;
 
   return (
-    <aside className="w-64 bg-[#305680] text-white p-4 h-[1940px]">
+    <aside className="w-64 bg-[#305680] text-white p-4 h-[2100px]">
       <div className="text-5xl font-bold mb-6  flex items-center justify-center">
         <img src={icon} alt="Logo" className="w-52" />
       </div>

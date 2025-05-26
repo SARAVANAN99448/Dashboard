@@ -7,6 +7,9 @@ import { WiHumidity } from "react-icons/wi";
 import { Wind, Thermometer } from "lucide-react";
 import { FaVirus, FaBroom } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import AqiVocsLineChart from "./AqiVocsLineChar";
+import Co2Pm1LineChart from "./Co2Pm1LineChart";
+import PmChart from "./PmChart";
 
 const initialDeviceData = {
   IAQ_10001: { aqi: 100, vocs: 300, humidity: 40, co2: 420, pm1: 20, pm2_5: 35, pm10: 40, temperature: 25 },
@@ -57,10 +60,12 @@ const Dashboard = () => {
       transition={{ duration: 0.5 }}
       className="p-4 space-y-4"
     >
+      <div className="flex items-center justify-between">
       <h1 className="text-2xl font-bold mb-2">
         {deviceName ? `Dashboard for ${deviceName}` : "Admin Dashboard"}
       </h1>
-
+      <button className="shadow-2xl bg-black text-white px-2 py-2 rounded-xl cursor-pointer">Download Report</button>
+</div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-5 pb-5 px-10">
         <DashboardCard
           title="Air Quality Index"
@@ -115,7 +120,7 @@ const Dashboard = () => {
           title="Temperature"
           value={data.temperature}
           unit="°C"
-          color="text-red-500"
+          color="text-green-500"
           icon={<Thermometer size={24} />}
         />
       </div>
@@ -123,6 +128,12 @@ const Dashboard = () => {
       <div className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition-all">
         <h2 className="text-xl font-semibold mb-2">Temperature & Humidity History</h2>
         <LineChartComponent deviceName={deviceName} />
+        <h2 className="text-xl font-semibold mb-2">Air Quality Index & VOCs History</h2>
+        <AqiVocsLineChart/>
+        <h2 className="text-xl font-semibold mb-2">C02 & PM1 History</h2>
+        <Co2Pm1LineChart/>
+        <h2 className="text-xl font-semibold mb-2">PM2.5 & PM10 History</h2>
+         <PmChart/>
       </div>
     </motion.div>
   );

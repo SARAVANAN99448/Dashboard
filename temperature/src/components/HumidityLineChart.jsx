@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import {
   LineChart,
   Line,
@@ -43,33 +43,13 @@ const fullData = [
 ];
 
 const HumidityLineChart = () => {
-  const [animatedData, setAnimatedData] = useState([]);
-  const intervalRef = useRef(null);
-  const indexRef = useRef(0);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      setAnimatedData((prev) => {
-        if (indexRef.current >= fullData.length) {
-          clearInterval(intervalRef.current);
-          return prev;
-        }
-        const newData = [...prev, fullData[indexRef.current]];
-        indexRef.current++;
-        return newData;
-      });
-    }, 60000); 
-
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
   return (
     <div className="bg-white p-4 rounded-xl shadow-2xl w-1/2 max-w-4xl mx-auto">
       <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
-        Your Humidity average: good
+        Your Humidity average: <span className='text-green-500'>good</span>
       </h2>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={animatedData}>
+        <LineChart data={fullData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="time" interval={2} angle={-45} textAnchor="end" height={70} />
           <YAxis />
@@ -80,7 +60,7 @@ const HumidityLineChart = () => {
             stroke="#8884d8"
             strokeWidth={2}
             dot={{ r: 3 }}
-            isAnimationActive={true}
+            isAnimationActive={false} // disable animation here
           />
         </LineChart>
       </ResponsiveContainer>

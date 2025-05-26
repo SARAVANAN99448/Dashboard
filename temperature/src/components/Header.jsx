@@ -19,11 +19,17 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+
+    // If user is logged in and on login page (or root), navigate to /home
+    if (currentUser && (location.pathname === "/" || location.pathname === "/login")) {
+      navigate("/home");
+    }
+  });
+
+  return () => unsubscribe();
+}, [navigate, location.pathname]);
 
   const handleLogout = async () => {
     try {
@@ -35,7 +41,7 @@ const Header = () => {
   };
 
   const handleLogin = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   return (

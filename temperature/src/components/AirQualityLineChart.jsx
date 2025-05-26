@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import {
   LineChart,
   Line,
@@ -43,40 +43,13 @@ const fullData = [
 ];
 
 const AirQualityLineChart = () => {
-  const [animatedData, setAnimatedData] = useState([]);
-  const intervalRef = useRef(null);
-
-  const startAnimation = () => {
-    clearInterval(intervalRef.current);
-    let index = 0;
-    intervalRef.current = setInterval(() => {
-      setAnimatedData((prev) => {
-        const newData = [...prev, fullData[index]];
-        index++;
-        if (index >= fullData.length) {
-          clearInterval(intervalRef.current);
-        }
-        return newData;
-      });
-    }, 60000);
-  };
-
-  useEffect(() => {
-    startAnimation(); // Initial animation on mount
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
-
   return (
-    <div
-      className="bg-white p-4 rounded-xl shadow-2xl w-1/2 mx-auto"
-    
-    >
+    <div className="bg-white p-4 rounded-xl shadow-2xl w-1/2 mx-auto">
       <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
-        Your AQI status: good
+        Your AQI status: <span className='text-green-500'>good</span>
       </h2>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={animatedData}>
+        <LineChart data={fullData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey="time"
@@ -93,7 +66,7 @@ const AirQualityLineChart = () => {
             stroke="#00C49F"
             strokeWidth={2}
             dot={{ r: 3 }}
-            isAnimationActive={true}
+            isAnimationActive={false}  // Disable path animation
           />
         </LineChart>
       </ResponsiveContainer>

@@ -21,7 +21,7 @@ const Login = () => {
       const user = userCredential.user;
 
       if (user.email === adminEmail) {
-        navigate("/admin");
+        navigate("/home");
       } else {
         alert("Access denied. Only admin can log in.");
         await signOut(auth);
